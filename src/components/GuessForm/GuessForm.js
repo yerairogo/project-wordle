@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+
 function GuessForm({ guessList, setGuessList }) {
   const [guessTerm, setGuessTerm] = React.useState('');
 
@@ -7,6 +9,11 @@ function GuessForm({ guessList, setGuessList }) {
     event.preventDefault();
     setGuessTerm('');
     console.log({ guess: guessTerm });
+
+    if (guessList.length >= NUM_OF_GUESSES_ALLOWED) {
+      window.alert('Too many tries >:(');
+      return;
+    }
 
     const newGuess = {
       id: crypto.randomUUID(),
