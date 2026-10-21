@@ -15,11 +15,7 @@ function GuessForm({ guessList, setGuessList }) {
       return;
     }
 
-    const newGuess = {
-      id: crypto.randomUUID(),
-      label: guessTerm,
-    }
-    const newGuessList = [...guessList, newGuess];
+    const newGuessList = [...guessList, guessTerm];
     setGuessList(newGuessList);
   };
 
