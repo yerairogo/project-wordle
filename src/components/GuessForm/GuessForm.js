@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import { checkGuess } from '../../game-helpers';
 
-function GuessForm({ guessList, setGuessList }) {
+function GuessForm({ guessList, setGuessList, answer }) {
   const [guessTerm, setGuessTerm] = React.useState('');
 
   const processForm = (event) => {
@@ -15,7 +16,7 @@ function GuessForm({ guessList, setGuessList }) {
       return;
     }
 
-    const newGuessList = [...guessList, guessTerm];
+    const newGuessList = [...guessList, checkGuess(guessTerm, answer)];
     setGuessList(newGuessList);
   };
 

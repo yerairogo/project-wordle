@@ -17,7 +17,7 @@ const [guessList, setGuessList] = React.useState([]);
   return (
     <>
       <GuessResults guessList={guessList} />
-      <GuessForm guessList={guessList} setGuessList={setGuessList} />
+      <GuessForm guessList={guessList} setGuessList={setGuessList} answer={answer} />
     </>
   );
 }
