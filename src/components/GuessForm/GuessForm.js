@@ -1,12 +1,19 @@
 import React from 'react';
 
-function GuessForm() {
+function GuessForm({ guessList, setGuessList }) {
   const [guessTerm, setGuessTerm] = React.useState('');
 
   const processForm = (event) => {
     event.preventDefault();
-    console.log({ guess: guessTerm });
     setGuessTerm('');
+    console.log({ guess: guessTerm });
+
+    const newGuess = {
+      id: crypto.randomUUID(),
+      label: guessTerm,
+    }
+    const newGuessList = [...guessList, newGuess];
+    setGuessList(newGuessList);
   };
 
   return (
