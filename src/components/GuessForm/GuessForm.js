@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
-function GuessForm({ guessList, setGuessList, answer }) {
+function GuessForm({ guessList, setGuessList, setStatus, status }) {
   const [guessTerm, setGuessTerm] = React.useState('');
 
   const processForm = (event) => {
@@ -10,12 +10,13 @@ function GuessForm({ guessList, setGuessList, answer }) {
     setGuessTerm('');
     console.log({ guess: guessTerm });
 
-    if (guessList.length >= NUM_OF_GUESSES_ALLOWED) {
-      window.alert('Too many tries >:(');
-      return;
-    }
 
     const newGuessList = [...guessList, guessTerm];
+
+    if (newGuessList.length === NUM_OF_GUESSES_ALLOWED) {
+      setStatus('lost')
+    }
+
     setGuessList(newGuessList);
   };
 
@@ -32,6 +33,7 @@ function GuessForm({ guessList, setGuessList, answer }) {
         type="text"
         pattern="^[A-Z]{5}$"
         required={true}
+        disabled={status !== 'running'}
         value={guessTerm}
         onChange={(event) => setGuessTerm(event.target.value.toUpperCase())}
       />

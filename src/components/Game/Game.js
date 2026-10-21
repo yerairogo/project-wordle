@@ -1,6 +1,7 @@
 import React from 'react';
 import GuessForm from '../GuessForm';
-import GuessResults from '../GuessResults'
+import GuessResults from '../GuessResults';
+import Banner from '../Banner';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
@@ -13,11 +14,13 @@ console.info({ answer });
 
 function Game() {
 const [guessList, setGuessList] = React.useState([]);
+const [status, setStatus] = React.useState('running');
 
   return (
     <>
-      <GuessResults guessList={guessList} answer={answer}/>
-      <GuessForm guessList={guessList} setGuessList={setGuessList} answer={answer} />
+      <GuessResults guessList={guessList} answer={answer} setStatus={setStatus} />
+      <GuessForm guessList={guessList} setGuessList={setGuessList} setStatus={setStatus} status={status} />
+      {status !== 'running' && <Banner status={status} answer={answer} tries={guessList.length} /> }
     </>
   );
 }

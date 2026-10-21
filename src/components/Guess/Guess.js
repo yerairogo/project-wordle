@@ -8,8 +8,11 @@ function Cell({ letter, status }) {
   return <span className={className}>{letter}</span>;
 }
 
-function Guess({ value, answer }) {
+function Guess({ value, answer, setStatus }) {
   const result = checkGuess(value, answer);
+  if (result && result.every((cell) => cell.status === 'correct')) {
+    setStatus('won');
+  }
 
   return (
     <p className="guess">
