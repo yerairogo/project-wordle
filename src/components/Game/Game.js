@@ -1,6 +1,6 @@
 import React from 'react';
 import GuessForm from '../GuessForm';
-import GuessResults from '../GuessResults
+import GuessResults from '../GuessResults'
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
